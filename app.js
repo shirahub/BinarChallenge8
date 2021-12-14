@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const swaggerJSON = require("./swagger.json")
+const swaggerUI = require('swagger-ui-express')
 
 const app = express();
 
@@ -23,3 +25,5 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerJSON))
