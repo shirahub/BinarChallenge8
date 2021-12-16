@@ -1,6 +1,6 @@
 import Table from 'react-bootstrap/Table'
 
-const PlayerTable = ({list}) => {
+const PlayerTable = ({list, onEdit}) => {
     return (
         <>
             <Table striped bordered hover size="sm">
@@ -16,13 +16,18 @@ const PlayerTable = ({list}) => {
                 </thead>
                 <tbody>
                 {list.map((item, i) => (
-                    <tr>
+                    <tr key={i}>
                         <td>{i+1}</td>
                         <td>{item.username}</td>
                         <td>{item.email}</td>
                         <td>{item.experience}</td>
                         <td>{item.level}</td>
-                        <td><button>Edit</button></td>
+                        <td><button onClick={() => onEdit({
+                            arrayNo: i,
+                            username: item.username,
+                            email: item.email,
+                            experience: item.experience
+                        })}>Edit</button></td>
                     </tr>
                 ))}
                 </tbody>
